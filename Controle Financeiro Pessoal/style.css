@@ -1,0 +1,126 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #b1dffa !important;
+}
+
+.cabecalho {
+    background-color: #3b7cb4;
+    color: #ccecdf;
+    padding: 5px;
+    text-align: center;
+}
+
+#txt_cabecalho {
+    color: #ffffff;
+    font-size: 40px;
+    text-align: center;
+    padding-left: 70px;
+}
+
+.itm_cabec{
+    display: inline;
+    margin: 0 10px;
+}
+
+.tab-button-form{
+    background-color: rgb(156, 34, 34);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    padding: 80px;
+}
+
+.add_values {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tabs {
+    margin: 20px 0;
+}
+
+.tab-button {
+    padding: 10px 15px;
+    cursor: pointer;
+    border: none;
+    background-color: #ccc;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+.tab-button.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.tab-content {
+    display: none;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tabs {
+    margin: 20px 0;
+}
+
+.tab-button-form,
+.tab-button-list {
+    padding: 10px 15px;
+    cursor: pointer;
+    border: none;
+    background-color: #ccc;
+    margin-right: 5px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.tab-button-form.active,
+.tab-button-list.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.tab-content-form,
+.tab-content-list {
+    display: none;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tab-content-form.active,
+.tab-content-list.active {
+    display: block;
+}
+
+.add_values_btn {   
+    padding-top: 20px;
+        align-self: auto;
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="semantic.css">
+    <link rel="stylesheet" href="semantic.js">
+    <title>Controle Financeiro</title>
+</head>
+
+<body>
+
+    <header class="cabecalho">
+        <h1 id="txt_cabecalho">💵 Controle Financeiro</h1>
+    </header>
+
+    <main>
+        <section class="add_values">
+
+            <div id="nova-receita" class="tab-content-form active">
+
+                <form>
+                    <h2>Nova Receita</h2>
+                    <label for="data_receita">Data da Receita:</label>
+                    <input type="date" id="data_receita" name="data_receita">
+
+                    <label for="descricao_receita">Descrição:</label>
+                    <input type="text" id="descricao_receita" name="descricao_receita">
+
+                    <label for="categoria_receita">Categoria:</label>
+                    <select id="categoria_receita" name="categoria_receita">
+                        <option value="alimentacao">Alimentação</option>
+                        <option value="transporte">Transporte</option>
+                        <option value="lazer">Lazer</option>
+                    </select>
+
+                    <label for="valor_receita">Valor:</label>
+                    <input type="text" id="valor_receita" name="valor_receita">
+
+                    <button id="btn_add_receita" type="submit" aria-label="Enviar nova receita">Enviar</button>
+                </form>
+            </div>
+
+            <div class="add_values_btn">
+                <button class="ui green button">Adicionar Receita</button>
+                <button class="ui red button">Adicionar Gasto</button>
+            </div>
+
+            <div id="novo-gasto" class="tab-content-form">
+                <form>
+                    <h2>Novo Gasto</h2>
+                    <label for="data_gasto">Data do Gasto:</label>
+                    <input type="date" id="data_gasto" name="data_gasto">
+
+                    <label for="descricao_gasto">Descrição:</label>
+                    <input type="text" id="descricao_gasto" name="descricao_gasto">
+
+                    <label for="categoria_gasto">Categoria:</label>
+                    <select id="categoria_gasto" name="categoria_gasto">
+                        <option value="alimentacao">Alimentação</option>
+                        <option value="transporte">Transporte</option>
+                        <option value="lazer">Lazer</option>
+                    </select>
+                    <label for="valor_gasto">Valor:</label>
+                    <input type="text" id="valor_gasto" name="valor_gasto">
+
+                    <button id="btn_add_gasto" type="submit" aria-label="Enviar novo gasto">Enviar</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="tabs">
+            <button class="tab-button active" data-tab="gastos">Gastos</button>
+            <button class="tab-button" data-tab="receitas">Receitas</button>
+        </section>
+
+        <div id="gastos" class="tab-content-list active">
+
+            <div class="ui items">
+                <div class="item">
+                  <div class="content">
+                    <div class="header">PC Gamer</div>
+                    <div class="meta">
+                      <span class="price">$1200</span>
+                      <span class="date">13/02/2025</span>
+                    </div>
+                    <div class="description">
+                      <p></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ui items">
+                <div class="item">
+                  <div class="content">
+                    <div class="header">PC Gamer</div>
+                    <div class="meta">
+                      <span class="price">$1200</span>
+                      <span class="date">13/02/2025</span>
+                    </div>
+                    <div class="description">
+                      <p></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+        </div>
+
+        <div class="ui divider"></div>
+
+        <div id="receitas" class="tab-content-list">
+            <h3>Lista de Receitas</h3>
+            <ul>
+                <li>Receita 1 - R$500</li>
+            </ul>
+        </div>
+
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+</body>
+
+</html>
+
