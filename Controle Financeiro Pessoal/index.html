@@ -5,8 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="semantic.css">
-    <link rel="stylesheet" href="semantic.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="semantic.js"></script>
+    <script src="script.js"></script>
     <title>Controle Financeiro</title>
 </head>
 
@@ -19,66 +22,73 @@
     <main>
         <section class="add_values">
 
-            <div id="nova-receita" class="tab-content-form active">
-
-                <form>
-                    <h2>Nova Receita</h2>
-                    <label for="data_receita">Data da Receita:</label>
-                    <input type="date" id="data_receita" name="data_receita">
-
-                    <label for="descricao_receita">Descrição:</label>
-                    <input type="text" id="descricao_receita" name="descricao_receita">
-
-                    <label for="categoria_receita">Categoria:</label>
-                    <select id="categoria_receita" name="categoria_receita">
-                        <option value="alimentacao">Alimentação</option>
-                        <option value="transporte">Transporte</option>
-                        <option value="lazer">Lazer</option>
-                    </select>
-
-                    <label for="valor_receita">Valor:</label>
-                    <input type="text" id="valor_receita" name="valor_receita">
-
-                    <button id="btn_add_receita" type="submit" aria-label="Enviar nova receita">Enviar</button>
-                </form>
+          <div id="modal_receita" class="ui modal">
+            <i class="close icon"></i>
+            <div class="header">
+              Adicionar Receita
             </div>
+              <div class="description">
+
+                <form id="form_nova_receita" class="ui form">
+                  <div class="field">
+                    <label>Descrição Receita</label>
+                    <input id="descricao" type="text" name="first-name" placeholder="Ex: Salário">
+                  </div>
+                  <div class="field">
+                    <label>Valor Receita</label>
+                    <input id="Valor" type="text" name="last-name" placeholder="Ex: R$1.000,00">
+                  </div>
+                </form>
+
+              </div>
+            <div class="actions">
+              <div id="confirma_receita" class="ui green button">Adicionar</div>
+              <div class="ui red button">Cancelar</div>
+            </div>
+          </div>
+
+          <div id="modal_gasto" class="ui modal">
+            <i class="close icon"></i>
+            <div class="header">
+              Adicionar Gasto
+            </div>
+              <div class="description">
+
+                <form id="form_nova_receita" class="ui form">
+                  <div class="field">
+                    <label>Descrição Do gasto</label>
+                    <input type="text" name="first-name" placeholder="Ex: Conta de Luz">
+                  </div>
+                  <div class="field">
+                    <label>Valor Gasto</label>
+                    <input type="text" name="last-name" placeholder="Ex: R$1.000,00">
+                  </div>
+                </form>
+
+              </div>
+            <div class="actions">
+              <div class="ui green button">Adicionar</div>
+              <div class="ui red button">Cancelar</div>
+            </div>
+          </div>
 
             <div class="add_values_btn">
-                <button class="ui green button">Adicionar Receita</button>
-                <button class="ui red button">Adicionar Gasto</button>
-            </div>
-
-            <div id="novo-gasto" class="tab-content-form">
-                <form>
-                    <h2>Novo Gasto</h2>
-                    <label for="data_gasto">Data do Gasto:</label>
-                    <input type="date" id="data_gasto" name="data_gasto">
-
-                    <label for="descricao_gasto">Descrição:</label>
-                    <input type="text" id="descricao_gasto" name="descricao_gasto">
-
-                    <label for="categoria_gasto">Categoria:</label>
-                    <select id="categoria_gasto" name="categoria_gasto">
-                        <option value="alimentacao">Alimentação</option>
-                        <option value="transporte">Transporte</option>
-                        <option value="lazer">Lazer</option>
-                    </select>
-                    <label for="valor_gasto">Valor:</label>
-                    <input type="text" id="valor_gasto" name="valor_gasto">
-
-                    <button id="btn_add_gasto" type="submit" aria-label="Enviar novo gasto">Enviar</button>
-                </form>
+                <button id="adicionar_receita" class="ui green button">Adicionar Receita</button>
+                <button id="adicionar_gasto" class="ui red button">Adicionar Gasto</button>
             </div>
         </section>
 
         <section class="tabs">
-            <button class="tab-button active" data-tab="gastos">Gastos</button>
-            <button class="tab-button" data-tab="receitas">Receitas</button>
+            <div class="ui buttons">
+              <button class="ui red button">Gastos</button>
+              <div class="or" data-text="ou"></div>
+              <button class="ui green button">Receitas</button>
+            </div>
         </section>
 
-        <div id="gastos" class="tab-content-list active">
-
-            <div class="ui items">
+        <div id="Receitas" class="tab-content-list active">
+          <h3>Lista de Receitas</h3>
+            <div id="meu-modal" class="ui items">
                 <div class="item">
                   <div class="content">
                     <div class="header">PC Gamer</div>
@@ -112,16 +122,34 @@
 
         <div class="ui divider"></div>
 
-        <div id="receitas" class="tab-content-list">
-            <h3>Lista de Receitas</h3>
-            <ul>
-                <li>Receita 1 - R$500</li>
-            </ul>
+        <div id="gastos" class="tab-content-list">
+            <h3>Lista de Gastos</h3>
+            <div id="meu-modal" class="ui items">
+              <div class="item">
+                <div class="content">
+                  <div class="header">PC Gamer</div>
+                  <div class="meta">
+                    <span class="price">$1200</span>
+                    <span class="date">13/02/2025</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ui items">
+              <div class="item">
+                <div class="content">
+                  <div class="header">PC Gamer</div>
+                  <div class="meta">
+                    <span class="price">$1200</span>
+                    <span class="date">13/02/2025</span>
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
 
     </main>
-
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 </body>
 

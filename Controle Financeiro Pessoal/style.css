@@ -5,11 +5,17 @@ body {
     background-color: #b1dffa !important;
 }
 
+#form_nova_receita{
+    padding: 30px !important; 
+}
+
+#form_novo_gasto{
+    padding: 30px !important; 
+}
+
 .cabecalho {
-    background-color: #3b7cb4;
-    color: #ccecdf;
-    padding: 5px;
-    text-align: center;
+    text-shadow: #006097;
+    padding-top: 40px;
 }
 
 #txt_cabecalho {
@@ -49,36 +55,23 @@ main {
 
 .add_values {
     background: white;
-    border-radius: 8px;
+    border-radius: 20px;
     padding: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 8px 8px 0px rgba(72, 128, 211, 0.2);
 }
 
 .tabs {
     margin: 20px 0;
-}
-
-.tab-button {
-    padding: 10px 15px;
-    cursor: pointer;
-    border: none;
-    background-color: #ccc;
-    margin-right: 5px;
-    border-radius: 5px;
-}
-
-.tab-button.active {
-    background-color: #4CAF50;
-    color: white;
+    text-align: center;
 }
 
 .tab-content {
-    display: none;
     background: white;
+    border-radius: 20px;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    box-shadow: 8px 8px 0px rgba(72, 128, 211, 0.2);
 }
 
 .tab-content.active {
@@ -89,38 +82,29 @@ main {
     margin: 20px 0;
 }
 
-.tab-button-form,
-.tab-button-list {
-    padding: 10px 15px;
-    cursor: pointer;
-    border: none;
-    background-color: #ccc;
-    margin-right: 5px;
-    border-radius: 5px;
-    transition: background 0.3s;
-}
 
-.tab-button-form.active,
-.tab-button-list.active {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.tab-content-form,
 .tab-content-list {
-    display: none;
-    background: white;
+    background: rgb(255, 255, 255);
+    border-radius: 20px;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    box-shadow: 8px 8px 0px rgba(72, 128, 211, 0.2);
 }
 
-.tab-content-form.active,
-.tab-content-list.active {
-    display: block;
+#receitas{
+    background-color: rgb(222, 250, 220);
 }
 
-.add_values_btn {   
-    padding-top: 20px;
-        align-self: auto;
+#gastos{
+    background-color: rgb(252, 219, 219);
+}
+
+.add_values_btn {
+    display: flex;
+    flex-direction: column;  /* Faz com que os botões fiquem empilhados */
+    align-items: flex-end;   /* Alinha os botões à direita */
+}
+
+.add_values_btn button {
+    margin-bottom: 15px !important; /* Espaçamento entre os botões */
 }
