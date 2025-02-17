@@ -4,12 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
-    
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="semantic.js"></script>
-    <script src="script.js"></script>
+
+  <link rel="shortcut icon" type="imagex/png" href="img/icons/icon maciels coffe 2.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
     <title>Controle Financeiro</title>
 </head>
 
@@ -21,7 +20,8 @@
 
     <main>
         <section class="add_values">
-
+          
+          <!-- Receitas -->
           <div id="modal_receita" class="ui modal">
             <i class="close icon"></i>
             <div class="header">
@@ -32,21 +32,23 @@
                 <form id="form_nova_receita" class="ui form">
                   <div class="field">
                     <label>Descrição Receita</label>
-                    <input id="descricao" type="text" name="first-name" placeholder="Ex: Salário">
+                    <input id="descricao_receita" type="text" name="first-name" placeholder="Ex: Salário">
                   </div>
                   <div class="field">
                     <label>Valor Receita</label>
-                    <input id="Valor" type="text" name="last-name" placeholder="Ex: R$1.000,00">
+                    <input id="valor_receita" type="text" name="last-name" placeholder="Ex: R$1.000,00">
                   </div>
                 </form>
 
               </div>
             <div class="actions">
-              <div id="confirma_receita" class="ui green button">Adicionar</div>
-              <div class="ui red button">Cancelar</div>
+              <div class="ui green button Confirma">Adicionar</div>
+              <div class="ui red button Cancela">Cancelar</div>
             </div>
           </div>
+          
 
+          <!-- Gasto -->
           <div id="modal_gasto" class="ui modal">
             <i class="close icon"></i>
             <div class="header">
@@ -54,21 +56,21 @@
             </div>
               <div class="description">
 
-                <form id="form_nova_receita" class="ui form">
+                <form id="form_novo_gasto" class="ui form">
                   <div class="field">
-                    <label>Descrição Do gasto</label>
-                    <input type="text" name="first-name" placeholder="Ex: Conta de Luz">
+                    <label>Descrição do Gasto</label>
+                    <input class="descricao" type="text" name="first-name" placeholder="Ex: Conta de Luz">
                   </div>
                   <div class="field">
                     <label>Valor Gasto</label>
-                    <input type="text" name="last-name" placeholder="Ex: R$1.000,00">
+                    <input class="valor" type="text" name="last-name" placeholder="Ex: R$1.000,00">
                   </div>
                 </form>
 
               </div>
             <div class="actions">
-              <div class="ui green button">Adicionar</div>
-              <div class="ui red button">Cancelar</div>
+              <div class="ui green button Confirma">Adicionar</div>
+              <div class="ui red button Cancela">Cancelar</div>
             </div>
           </div>
 
@@ -86,7 +88,7 @@
             </div>
         </section>
 
-        <div id="Receitas" class="tab-content-list active">
+        <div id="receitas" class="tab-content-list active">
           <h3>Lista de Receitas</h3>
             <div id="meu-modal" class="ui items">
                 <div class="item">
@@ -103,53 +105,18 @@
                 </div>
               </div>
 
-              <div class="ui items">
-                <div class="item">
-                  <div class="content">
-                    <div class="header">PC Gamer</div>
-                    <div class="meta">
-                      <span class="price">$1200</span>
-                      <span class="date">13/02/2025</span>
-                    </div>
-                    <div class="description">
-                      <p></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
         </div>
-
-        <div class="ui divider"></div>
-
-        <div id="gastos" class="tab-content-list">
-            <h3>Lista de Gastos</h3>
-            <div id="meu-modal" class="ui items">
-              <div class="item">
-                <div class="content">
-                  <div class="header">PC Gamer</div>
-                  <div class="meta">
-                    <span class="price">$1200</span>
-                    <span class="date">13/02/2025</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="ui items">
-              <div class="item">
-                <div class="content">
-                  <div class="header">PC Gamer</div>
-                  <div class="meta">
-                    <span class="price">$1200</span>
-                    <span class="date">13/02/2025</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-        </div>
+        
 
     </main>
+
+
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+  <script src="js/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 

@@ -15,12 +15,10 @@ $(document).ready(function () {
         .modal('show')
         });
 
-// Adiciona um novo item à lista
-$('#confirma_receita').click(function() {
-    // Obtém os valores dos campos
-    var descricao = $('#descricao').val();
-    var valor = $('#Valor').val();
-
+$('.Confirma').click(function() {
+    var descricao = $("#descricao_receita").val();
+    var valor = $("#valor_receita").val();
+    
 let dataAtual = new Date();
 let dia = String(dataAtual.getDate()).padStart(2, '0');  // Garante 2 dígitos para o dia
 let mes = String(dataAtual.getMonth() + 1).padStart(2, '0');  // Mes começa do 0, então somamos 1
@@ -35,7 +33,7 @@ var data = `${dia}/${mes}/${ano}`;
         valor: valor,
         data: data
       });
-  
+
       // Renderiza a lista novamente
       renderizarLista();
   
@@ -45,14 +43,25 @@ var data = `${dia}/${mes}/${ano}`;
       $('#data').val('');
       $('#modal_adicionar').modal('hide');
     } else {
-      alert('Preencha todos os campos!');
+      Swal.fire({
+        title: "Preencha todos os campos",
+        icon: "warning",
+        confirmButtonColor: "red",
+      }); 
     }
   });
 
+  $('.Cancela').on('click', function() {
+    $('.ui.modal').modal('hide');
+  });
+  
 
 });
 
 function renderizarLista() {
+
+  console.log(listaItens[1])
+
     // Limpa a lista antes de renderizar novamente
     $('#receitas').empty();
   
