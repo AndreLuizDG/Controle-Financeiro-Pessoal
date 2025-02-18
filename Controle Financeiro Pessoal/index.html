@@ -1,124 +1,140 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Controle Financeiro</title>
   <link rel="shortcut icon" type="imagex/png" href="img/icons/icon maciels coffe 2.png">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"/>
   <link rel="stylesheet" href="css/style.css">
-
-    <title>Controle Financeiro</title>
 </head>
 
 <body>
+  <!-- Cabeçalho -->
+  <header class="cabecalho">
+    <h1 id="txt_cabecalho">💵 Controle Financeiro</h1>
+  </header>
 
-    <header class="cabecalho">
-        <h1 id="txt_cabecalho">💵 Controle Financeiro</h1>
-    </header>
+  <!-- Conteúdo Principal -->
+  <main>
 
-    <main>
-        <section class="add_values">
-          
-          <!-- Receitas -->
-          <div id="modal_receita" class="ui modal">
-            <i class="close icon"></i>
-            <div class="header">
-              Adicionar Receita
-            </div>
-              <div class="description">
-
-                <form id="form_nova_receita" class="ui form">
-                  <div class="field">
-                    <label>Descrição Receita</label>
-                    <input id="descricao_receita" type="text" name="first-name" placeholder="Ex: Salário">
-                  </div>
-                  <div class="field">
-                    <label>Valor Receita</label>
-                    <input id="valor_receita" type="text" name="last-name" placeholder="Ex: R$1.000,00">
-                  </div>
-                </form>
-
-              </div>
-            <div class="actions">
-              <div class="ui green button Confirma">Adicionar</div>
-              <div class="ui red button Cancela">Cancelar</div>
-            </div>
-          </div>
-          
-
-          <!-- Gasto -->
-          <div id="modal_gasto" class="ui modal">
-            <i class="close icon"></i>
-            <div class="header">
-              Adicionar Gasto
-            </div>
-              <div class="description">
-
-                <form id="form_novo_gasto" class="ui form">
-                  <div class="field">
-                    <label>Descrição do Gasto</label>
-                    <input class="descricao" type="text" name="first-name" placeholder="Ex: Conta de Luz">
-                  </div>
-                  <div class="field">
-                    <label>Valor Gasto</label>
-                    <input class="valor" type="text" name="last-name" placeholder="Ex: R$1.000,00">
-                  </div>
-                </form>
-
-              </div>
-            <div class="actions">
-              <div class="ui green button Confirma">Adicionar</div>
-              <div class="ui red button Cancela">Cancelar</div>
-            </div>
-          </div>
-
-            <div class="add_values_btn">
-                <button id="adicionar_receita" class="ui green button">Adicionar Receita</button>
-                <button id="adicionar_gasto" class="ui red button">Adicionar Gasto</button>
-            </div>
-        </section>
-
-        <section class="tabs">
-            <div class="ui buttons">
-              <button class="ui red button">Gastos</button>
-              <div class="or" data-text="ou"></div>
-              <button class="ui green button">Receitas</button>
-            </div>
-        </section>
-
-        <div id="receitas" class="tab-content-list active">
-          <h3>Lista de Receitas</h3>
-            <div id="meu-modal" class="ui items">
-                <div class="item">
-                  <div class="content">
-                    <div class="header">PC Gamer</div>
-                    <div class="meta">
-                      <span class="price">$1200</span>
-                      <span class="date">13/02/2025</span>
-                    </div>
-                    <div class="description">
-                      <p></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
+    <!-- Resumo Financeiro -->
+    <div class="resumo-financeiro">
+      <div class="card balanco positivo" id="card-balanco">
+        <h3>Balanço</h3>
+        <p>R$ <span id="valor-balanco">0,00</span></p>
+      </div>
+      <div class="card detalhes-financeiros">
+        <div class="detalhe receita">
+          <h4>Receitas</h4>
+          <p>R$ <span id="valor-receitas">0,00</span></p>
         </div>
-        
+        <div class="detalhe gasto">
+          <h4>Gastos</h4>
+          <p>R$ <span id="valor-gastos">0,00</span></p>
+        </div>
+      </div>
+    </div>
 
-    </main>
+    <!-- Botões de Ação -->
+    <div class="add_values_btn">
+      <button id="adicionar_receita" class="ui green button">Adicionar Receita</button>
+      <button id="adicionar_gasto" class="ui red button">Adicionar Gasto</button>
+    </div>
 
+    <!-- Abas (exemplo opcional) -->
+    <section class="tabs">
+      <div class="ui buttons">
+        <button class="ui red button" id="btn-gastos">Gastos</button>
+        <div class="or" data-text="ou"></div>
+        <button class="ui green button" id="btn-receitas">Receitas</button>
+      </div>
+    </section>
 
-  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <!-- Lista de Transações -->
+    <div id="transacoes" class="tab-content-list active">
+      <h3>Transações Recentes</h3>
+      <table id="tabela-transacoes">
+        <thead>
+          <tr>
+            <th>Descrição</th>
+            <th>Valor (R$)</th>
+            <th>Data</th>
+            <th>Tipo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Itens adicionados dinamicamente via JS -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Modal Receita -->
+  <div id="modal_receita" class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">Adicionar Receita</div>
+    <div class="description">
+      <form id="form_nova_receita" class="ui form">
+        <div class="field">
+          <label>Descrição da Receita</label>
+          <input
+            id="descricao_receita"
+            type="text"
+            placeholder="Ex: Salário"
+          />
+        </div>
+        <div class="field">
+          <label>Valor da Receita</label>
+          <input
+            id="valor_receita"
+            type="text"
+            placeholder="Ex: 1000.00"
+          />
+        </div>
+      </form>
+    </div>
+    <div class="actions">
+      <div class="ui green button Confirma_Receita">Adicionar</div>
+      <div class="ui red button Cancela_Receita">Cancelar</div>
+    </div>
+  </div>
+
+  <!-- Modal Gasto -->
+  <div id="modal_gasto" class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">Adicionar Gasto</div>
+    <div class="description">
+      <form id="form_novo_gasto" class="ui form">
+        <div class="field">
+          <label>Descrição do Gasto</label>
+          <input
+            id="descricao_gasto"
+            type="text"
+            placeholder="Ex: Conta de Luz"
+          />
+        </div>
+        <div class="field">
+          <label>Valor do Gasto</label>
+          <input
+            id="valor_gasto"
+            type="text"
+            placeholder="Ex: 300.00"
+          />
+        </div>
+      </form>
+    </div>
+    <div class="actions">
+      <div class="ui green button Confirma_Gasto">Adicionar</div>
+      <div class="ui red button Cancela_Gasto">Cancelar</div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
-  <script src="js/index.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+  <script src="js/index.js"></script>
 </body>
-
 </html>
-

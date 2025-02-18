@@ -1,110 +1,153 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #b1dffa !important;
-}
 
-#form_nova_receita{
-    padding: 30px !important; 
-}
+    /* =========== Reset / Base =========== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #d4dbc4e5 !important;
+    }
+    
+    /* =========== Cabeçalho =========== */
+    .cabecalho {
+      padding-top: 40px;
+      padding-bottom: 25px;
+      text-align: center;
+    }
+    #txt_cabecalho {
+      color: #f5f5f0; /* Off-white */
+      font-size: 50px;
+      text-shadow: 3px 3px 0px #b4b8a4;
+    }
 
-#form_novo_gasto{
-    padding: 30px !important; 
-}
+    /* =========== Main / Conteúdo =========== */
+    main {
+      padding: 10px 10% 50px 10%;
+    }
 
-.cabecalho {
-    text-shadow: #006097;
-    padding-top: 40px;
-}
+    /* =========== Resumo Financeiro (Cards) =========== */
+    .resumo-financeiro {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s;
+      min-width: 180px;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card h3 {
+      color: #555;
+      margin-bottom: 10px;
+    }
+    .card p {
+      margin: 5px 0 0;
+      font-weight: bold;
+    }
+    
+    /* Balanço em destaque */
+    .balanco p {
+      font-size: 2em; /* Maior destaque no balanço */
+    }
+    /* Positivo/negativo */
+    .balanco.positivo span {
+      color: #4caf50;
+    }
+    .balanco.negativo span {
+      color: #f44336;
+    }
 
-#txt_cabecalho {
-    color: #ffffff;
-    font-size: 40px;
-    text-align: center;
-    padding-left: 70px;
-}
+    /* Receitas e Gastos (cartões pequenos) */
+    .detalhes-financeiros {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      justify-content: space-between;
+    }
+    .detalhe {
+      width: 150px;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .detalhe h4 {
+      margin: 0;
+      font-size: 1em;
+      color: #777;
+    }
+    .detalhe p {
+      font-size: 1.2em;
+      margin: 5px 0 0;
+    }
+    .receita span {
+      color: #4caf50;
+    }
+    .gasto span {
+      color: #f44336;
+    }
 
-.itm_cabec{
-    display: inline;
-    margin: 0 10px;
-}
+    /* =========== Botões de Ação =========== */
+    .add_values_btn {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .add_values_btn button {
+      margin: 0 5px;
+    }
 
-.tab-button-form{
-    background-color: rgb(156, 34, 34);
-}
+    /* =========== Tabs (opcional) =========== */
+    .tabs {
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-}
+    /* =========== Lista de Transações =========== */
+    .tab-content-list {
+      background: #fff;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px;
+    }
+    .tab-content-list h3 {
+      margin-bottom: 15px;
+    }
+    .tab-content-list table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .tab-content-list th, .tab-content-list td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    .tab-content-list th {
+      background-color: #f7f7f7;
+    }
+    .tipo-receita {
+      color: #4caf50;
+      font-weight: bold;
+    }
+    .tipo-gasto {
+      color: #f44336;
+      font-weight: bold;
+    }
 
-nav ul li {
-    display: inline;
-    margin: 0 10px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-}
-
-main {
-    padding: 80px;
-}
-
-.add_values {
-    background: white;
-    border-radius: 20px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 8px 8px 0px rgba(72, 128, 211, 0.2);
-}
-
-.tabs {
-    margin: 20px 0;
-    text-align: center;
-}
-
-.tab-content {
-    background: white;
-    border-radius: 20px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 8px 8px 0px rgba(72, 128, 211, 0.2);
-}
-
-.tab-content.active {
-    display: block;
-}
-
-.tabs {
-    margin: 20px 0;
-}
-
-
-.tab-content-list {
-    background: rgb(255, 255, 255);
-    border-radius: 20px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 8px 8px 0px rgba(72, 128, 211, 0.2);
-}
-
-#receitas{
-    background-color: rgb(222, 250, 220);
-}
-
-#gastos{
-    background-color: rgb(252, 219, 219);
-}
-
-.add_values_btn {
-    display: flex;
-    flex-direction: column;  /* Faz com que os botões fiquem empilhados */
-    align-items: flex-end;   /* Alinha os botões à direita */
-}
-
-.add_values_btn button {
-    margin-bottom: 15px !important; /* Espaçamento entre os botões */
-}
+    /* =========== Modais =========== */
+    #modal_receita .header, #modal_gasto .header {
+      font-weight: bold;
+    }
+    #form_nova_receita, #form_novo_gasto {
+      padding: 30px !important;
+    }
