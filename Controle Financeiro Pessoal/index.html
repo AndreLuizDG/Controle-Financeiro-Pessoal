@@ -4,37 +4,47 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Controle Financeiro</title>
-  <link rel="shortcut icon" type="imagex/png" href="img/icons/icon maciels coffe 2.png">
+  <link rel="shortcut icon" type="imagex/png" href="img/dinheiro.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"/>
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
   <!-- Cabeçalho -->
-  <header class="cabecalho">
-    <h1 id="txt_cabecalho">💵 Controle Financeiro</h1>
-  </header>
+  <header>
+    <div class="logo">💰 Meu Financeiro</div>
+    <nav>
+        <ul>
+            <li><a href="#">Visão Geral</a></li>
+            <li><a href="#">Relatório do Mês</a></li>
+            <li><a href="#">Visão Anual</a></li>
+            <li><a href="#">Exportar para Planilha</a></li>
+        </ul>
+    </nav>
+</header>
 
   <!-- Conteúdo Principal -->
   <main>
 
-    <!-- Resumo Financeiro -->
-    <div class="resumo-financeiro">
-      <div class="card balanco positivo" id="card-balanco">
-        <h3>Balanço</h3>
-        <p>R$ <span id="valor-balanco">0,00</span></p>
-      </div>
-      <div class="card detalhes-financeiros">
-        <div class="detalhe receita">
-          <h4>Receitas</h4>
-          <p>R$ <span id="valor-receitas">0,00</span></p>
-        </div>
-        <div class="detalhe gasto">
-          <h4>Gastos</h4>
-          <p>R$ <span id="valor-gastos">0,00</span></p>
-        </div>
-      </div>
+<!-- Resumo Financeiro -->
+<div class="resumo-financeiro">
+  <!-- Balanço Geral -->
+  <div class="card balanco" id="card-balanco">
+    <h3>Balanço</h3>
+    <p class="valor">R$ <span id="valor-balanco">0,00</span></p>
+  </div>
+
+  <!-- Resumo Detalhado -->
+  <div class="card detalhes-financeiros">
+
+    <div class="detalhe receita">
+      <p>💰 Receitas: <span id="valor-receitas">R$ 0,00</span></p>
     </div>
+    <div class="detalhe gasto">
+      <p>💸 Gastos: <span id="valor-gastos">R$ 0,00</span></p>
+    </div>
+  </div>
+  </div>
 
     <!-- Botões de Ação -->
     <div class="add_values_btn">
@@ -46,7 +56,7 @@
     <section class="tabs">
       <div class="ui buttons">
         <button class="ui red button" id="btn-gastos">Gastos</button>
-        <div class="or" data-text="ou"></div>
+        <button class="ui grey button" id="btn-todos">Todas as entradas</button>
         <button class="ui green button" id="btn-receitas">Receitas</button>
       </div>
     </section>
@@ -59,12 +69,12 @@
           <tr>
             <th>Descrição</th>
             <th>Valor (R$)</th>
-            <th>Data</th>
+            <th>categoria</th>
             <th>Tipo</th>
           </tr>
         </thead>
         <tbody>
-          <!-- Itens adicionados dinamicamente via JS -->
+
         </tbody>
       </table>
     </div>
@@ -92,6 +102,13 @@
             placeholder="Ex: 1000.00"
           />
         </div>
+
+        <select id="categoria_receita" class="ui search dropdown">
+          <option value="">Sem categoria</option>
+          <option value="Salário">Salário</option>
+          <option value="Renda Extra">Renda Extra</option>
+        </select>
+
       </form>
     </div>
     <div class="actions">
@@ -122,11 +139,24 @@
             placeholder="Ex: 300.00"
           />
         </div>
+
+          <select id="categoria_gasto" class="ui search dropdown">
+            <option value="">Sem categoria</option>
+            <option value="Saúde">Saúde</option>
+            <option value="Comida">Comida</option>
+            <option value="Carro">Carro</option>
+          </select>
+
+
       </form>
     </div>
     <div class="actions">
-      <div class="ui green button Confirma_Gasto">Adicionar</div>
-      <div class="ui red button Cancela_Gasto">Cancelar</div>
+      <div class="ui green button Confirma_Gasto">
+        <i class="save icon"></i>
+        Adicionar</div>
+      <div class="ui red button Cancela_Gasto">
+        <i class="trash icon"></i>
+        Cancelar</div>
     </div>
   </div>
 

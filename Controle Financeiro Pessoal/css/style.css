@@ -1,153 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
 
-    /* =========== Reset / Base =========== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #d4dbc4e5 !important;
-    }
-    
-    /* =========== Cabeçalho =========== */
-    .cabecalho {
-      padding-top: 40px;
-      padding-bottom: 25px;
-      text-align: center;
-    }
-    #txt_cabecalho {
-      color: #f5f5f0; /* Off-white */
-      font-size: 50px;
-      text-shadow: 3px 3px 0px #b4b8a4;
-    }
+/* =========== Reset / Base =========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    /* =========== Main / Conteúdo =========== */
-    main {
-      padding: 10px 10% 50px 10%;
-    }
+body {
+  background: linear-gradient(to bottom, #edf1f7, #cad8e6);
+  font-family: 'Poppins', sans-serif;
+}
 
-    /* =========== Resumo Financeiro (Cards) =========== */
-    .resumo-financeiro {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      margin-bottom: 30px;
-    }
-    .card {
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      padding: 20px;
-      text-align: center;
-      transition: transform 0.3s;
-      min-width: 180px;
-    }
-    .card:hover {
-      transform: scale(1.05);
-    }
-    .card h3 {
-      color: #555;
-      margin-bottom: 10px;
-    }
-    .card p {
-      margin: 5px 0 0;
-      font-weight: bold;
-    }
-    
-    /* Balanço em destaque */
-    .balanco p {
-      font-size: 2em; /* Maior destaque no balanço */
-    }
-    /* Positivo/negativo */
-    .balanco.positivo span {
-      color: #4caf50;
-    }
-    .balanco.negativo span {
-      color: #f44336;
-    }
+.wave-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
 
-    /* Receitas e Gastos (cartões pequenos) */
-    .detalhes-financeiros {
-      display: flex;
-      flex-direction: row;
-      gap: 20px;
-      justify-content: space-between;
-    }
-    .detalhe {
-      width: 150px;
-      padding: 10px;
-      border-radius: 10px;
-    }
-    .detalhe h4 {
-      margin: 0;
-      font-size: 1em;
-      color: #777;
-    }
-    .detalhe p {
-      font-size: 1.2em;
-      margin: 5px 0 0;
-    }
-    .receita span {
-      color: #4caf50;
-    }
-    .gasto span {
-      color: #f44336;
-    }
+.wave-container svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 150px;
+}
 
-    /* =========== Botões de Ação =========== */
-    .add_values_btn {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .add_values_btn button {
-      margin: 0 5px;
-    }
+.wave-container .wave {
+  fill: #fbbf24; /* Amarelo, você pode mudar para outra cor */
+}
 
-    /* =========== Tabs (opcional) =========== */
-    .tabs {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+.content {
+  position: relative;
+  z-index: 2;
+}
 
-    /* =========== Lista de Transações =========== */
-    .tab-content-list {
-      background: #fff;
-      border-radius: 20px;
-      padding: 20px;
-      box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
-      margin-bottom: 20px;
-    }
-    .tab-content-list h3 {
-      margin-bottom: 15px;
-    }
-    .tab-content-list table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    .tab-content-list th, .tab-content-list td {
-      padding: 10px;
-      border: 1px solid #ddd;
-      text-align: left;
-    }
-    .tab-content-list th {
-      background-color: #f7f7f7;
-    }
-    .tipo-receita {
-      color: #4caf50;
-      font-weight: bold;
-    }
-    .tipo-gasto {
-      color: #f44336;
-      font-weight: bold;
-    }
+/* =========== Cabeçalho =========== */
+.cabecalho {
+  padding-top: 40px;
+  padding-bottom: 25px;
+  text-align: center;
+}
+#txt_cabecalho {
+  color: #f5f5f0; /* Off-white */
+  font-size: 50px;
+  text-shadow: 3px 3px 0px #b4b8a4;
+}
 
-    /* =========== Modais =========== */
-    #modal_receita .header, #modal_gasto .header {
-      font-weight: bold;
-    }
-    #form_nova_receita, #form_novo_gasto {
-      padding: 30px !important;
-    }
+/* =========== Main / Conteúdo =========== */
+main {
+  padding: 10px 10% 50px 10%;
+}
+
+.resumo-financeiro {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  min-width: 200px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.card p.valor {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.balanco p {
+  font-size: 2.2em;
+}
+
+.balanco span {
+  font-weight: bold;
+}
+
+/* Cores para saldo positivo/negativo */
+.balanco.positivo .valor {
+  color: #4caf50;
+}
+
+.balanco.negativo .valor {
+  color: #f44336;
+}
+
+.receita .valor {
+  color: #2d8b2d;
+}
+
+.gasto .valor {
+  color: #d9534f;
+}
+
+/* Detalhamento */
+.saldo-detalhado ul {
+  list-style: none;
+  padding: 0;
+}
+
+.saldo-detalhado li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.indicador {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.indicador.receita {
+  background-color: #4caf50;
+}
+
+.indicador.gasto {
+  background-color: #f44336;
+}
+
+
+/* Receitas e Gastos (cartões pequenos) */
+.detalhes-financeiros {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: space-between;
+}
+.detalhe {
+  width: 150px;
+  padding: 10px;
+  border-radius: 10px;
+}
+.detalhe h4 {
+  margin: 0;
+  font-size: 1em;
+  color: #777;
+}
+.detalhe p {
+  font-size: 1.2em;
+  margin: 5px 0 0;
+}
+.receita span {
+  color: #4caf50;
+}
+.gasto span {
+  color: #f44336;
+}
+
+/* =========== Botões de Ação =========== */
+.add_values_btn {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.add_values_btn button {
+  margin: 0 5px;
+}
+
+/* =========== Tabs (opcional) =========== */
+.tabs {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* =========== Lista de Transações =========== */
+.tab-content-list {
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+.tab-content-list h3 {
+  margin-bottom: 15px;
+}
+.tab-content-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.tab-content-list th,
+.tab-content-list td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+.tab-content-list th {
+  background-color: #f7f7f7;
+}
+.tipo-receita {
+  color: #4caf50;
+  font-weight: bold;
+}
+.tipo-gasto {
+  color: #f44336;
+  font-weight: bold;
+}
+
+/* =========== Modais =========== */
+#modal_receita .header,
+#modal_gasto .header {
+  font-weight: bold;
+}
+#form_nova_receita,
+#form_novo_gasto {
+  padding: 30px !important;
+}
+
+
+
+
+header {
+  background-color: #2C3E50;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 50px;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+}
+
+nav ul li {
+  margin-left: 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 12px;
+  transition: 0.3s;
+}
+
+nav ul li a:hover {
+  background-color: #34495E;
+  border-radius: 5px;
+}

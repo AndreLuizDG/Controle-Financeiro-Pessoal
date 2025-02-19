@@ -11,11 +11,13 @@ $(document).ready(function () {
   $(".Confirma_Receita").click(function () {
     const descricao = $("#descricao_receita").val().trim();
     const valor = $("#valor_receita").val().trim();
-
+    var categoria = $("#categoria_receita").val().trim();
+    console.log(categoria)
     if (descricao && valor) {
       listaItens.push({
         descricao: descricao,
         valor: parseFloat(valor),
+        categoria: categoria,
         data: obterDataAtual(),
         tipo: "receita",
       });
@@ -38,11 +40,13 @@ $(document).ready(function () {
   $(".Confirma_Gasto").click(function () {
     const descricao = $("#descricao_gasto").val().trim();
     const valor = $("#valor_gasto").val().trim();
+    var categoria = $("#categoria_gasto").val().trim();
 
     if (descricao && valor) {
       listaItens.push({
         descricao: descricao,
         valor: parseFloat(valor),
+        categoria: categoria,
         data: obterDataAtual(),
         tipo: "gasto",
       });
@@ -66,14 +70,19 @@ $(document).ready(function () {
     $(".ui.modal").modal("hide");
   });
 
-  // Exemplo simples de "tabs": alternar cor de fundo dos botões (opcional)
   $("#btn-gastos").click(function () {
-    $(this).addClass("red").siblings().removeClass("green");
+    $(this).addClass("red").siblings().removeClass("green grey");
     renderizarLista('gasto');
   });
+
   $("#btn-receitas").click(function () {
-    $(this).addClass("green").siblings().removeClass("red");
+    $(this).addClass("green").siblings().removeClass("red grey");
     renderizarLista('receita');
+  });
+
+  $("#btn-todos").click(function () {
+    $(this).addClass("grey").siblings().removeClass("red green");
+    renderizarLista('');
 
   });
 });
@@ -83,22 +92,18 @@ function renderizarLista(filtroTipo) {
   const tbody = $("#tabela-transacoes tbody");
   tbody.empty();
 
-  // Filtra a lista com base no tipo selecionado
   const listaFiltrada = listaItens.filter((item) => {
-    // Se não houver filtro, mostra tudo
     if (!filtroTipo) return true;
-    // Se houver filtro, compara com o tipo do item
     return item.tipo === filtroTipo;
   });
 
-  // Renderiza a lista filtrada
   listaFiltrada.forEach((item) => {
     const tipoClasse = item.tipo === "receita" ? "tipo-receita" : "tipo-gasto";
     const row = `
       <tr>
         <td>${item.descricao}</td>
         <td>${parseFloat(item.valor).toFixed(2)}</td>
-        <td>${item.data}</td>
+        <td>${item.categoria}</td>
         <td class="${tipoClasse}">${item.tipo}</td>
       </tr>
     `;
@@ -112,9 +117,9 @@ function atualizarBalanco() {
   let totalGastos = 0;
 
   listaItens.forEach((item) => {
-    if (item.tipo === "Receita") {
+    if (item.tipo === "receita") {
       totalReceitas += item.valor;
-    } else if (item.tipo === "Gasto") {
+    } else if (item.tipo === "gasto") {
       totalGastos += item.valor;
     }
   });
