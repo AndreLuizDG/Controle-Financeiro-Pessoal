@@ -44,123 +44,63 @@
       <p>💸 Gastos: <span id="valor-gastos">R$ 0,00</span></p>
     </div>
   </div>
-  </div>
+</div>
 
-    <!-- Botões de Ação -->
+
     <div class="add_values_btn">
+
+        <form id="form_nova_receita" class="ui form">
+          <div class="fields-container">
+            <div class="field">
+              <label>Descrição</label>
+              <input id="descricao" type="text" placeholder="Ex: Descrição" />
+            </div>
+            <div class="field">
+              <label>Valor</label>
+              <input id="valor" type="number" placeholder="Ex: R$ 1000.00" />
+            </div>
+            <div class="field">
+              <label>Categoria</label>
+              <input id="categoria" type="text" placeholder="Ex: Saúde" />
+            </div>
+          </div>
+        </form>
+        
+
       <button id="adicionar_receita" class="ui green button">Adicionar Receita</button>
       <button id="adicionar_gasto" class="ui red button">Adicionar Gasto</button>
     </div>
 
-    <!-- Abas (exemplo opcional) -->
-    <section class="tabs">
-      <div class="ui buttons">
-        <button class="ui red button" id="btn-gastos">Gastos</button>
-        <button class="ui grey button" id="btn-todos">Todas as entradas</button>
-        <button class="ui green button" id="btn-receitas">Receitas</button>
-      </div>
-    </section>
 
-    <!-- Lista de Transações -->
     <div id="transacoes" class="tab-content-list active">
       <h3>Transações Recentes</h3>
+
+      <section class="tabs">
+        <div class="tiny ui buttons">
+          <button class="tiny ui red button" id="btn-gastos">Gastos</button>
+          <button class="tiny ui grey button" id="btn-todos">Todas as entradas</button>
+          <button class="tiny ui green button" id="btn-receitas">Receitas</button>
+        </div>
+      </section>
+
       <table id="tabela-transacoes">
         <thead>
           <tr>
             <th>Descrição</th>
             <th>Valor (R$)</th>
-            <th>categoria</th>
+            <th>Categoria</th>
             <th>Tipo</th>
+            <th>Ação</th> <!-- Nova coluna para o ícone de exclusão -->
           </tr>
         </thead>
-        <tbody>
-
-        </tbody>
+        <tbody></tbody>
       </table>
+      
     </div>
   </main>
 
-  <!-- Modal Receita -->
-  <div id="modal_receita" class="ui modal">
-    <i class="close icon"></i>
-    <div class="header">Adicionar Receita</div>
-    <div class="description">
-      <form id="form_nova_receita" class="ui form">
-        <div class="field">
-          <label>Descrição da Receita</label>
-          <input
-            id="descricao_receita"
-            type="text"
-            placeholder="Ex: Salário"
-          />
-        </div>
-        <div class="field">
-          <label>Valor da Receita</label>
-          <input
-            id="valor_receita"
-            type="text"
-            placeholder="Ex: 1000.00"
-          />
-        </div>
-
-        <select id="categoria_receita" class="ui search dropdown">
-          <option value="">Sem categoria</option>
-          <option value="Salário">Salário</option>
-          <option value="Renda Extra">Renda Extra</option>
-        </select>
-
-      </form>
-    </div>
-    <div class="actions">
-      <div class="ui green button Confirma_Receita">Adicionar</div>
-      <div class="ui red button Cancela_Receita">Cancelar</div>
-    </div>
-  </div>
-
-  <!-- Modal Gasto -->
-  <div id="modal_gasto" class="ui modal">
-    <i class="close icon"></i>
-    <div class="header">Adicionar Gasto</div>
-    <div class="description">
-      <form id="form_novo_gasto" class="ui form">
-        <div class="field">
-          <label>Descrição do Gasto</label>
-          <input
-            id="descricao_gasto"
-            type="text"
-            placeholder="Ex: Conta de Luz"
-          />
-        </div>
-        <div class="field">
-          <label>Valor do Gasto</label>
-          <input
-            id="valor_gasto"
-            type="text"
-            placeholder="Ex: 300.00"
-          />
-        </div>
-
-          <select id="categoria_gasto" class="ui search dropdown">
-            <option value="">Sem categoria</option>
-            <option value="Saúde">Saúde</option>
-            <option value="Comida">Comida</option>
-            <option value="Carro">Carro</option>
-          </select>
 
 
-      </form>
-    </div>
-    <div class="actions">
-      <div class="ui green button Confirma_Gasto">
-        <i class="save icon"></i>
-        Adicionar</div>
-      <div class="ui red button Cancela_Gasto">
-        <i class="trash icon"></i>
-        Cancelar</div>
-    </div>
-  </div>
-
-  <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>

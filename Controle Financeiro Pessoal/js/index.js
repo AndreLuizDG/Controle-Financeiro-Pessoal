@@ -1,17 +1,11 @@
 let listaItens = [];
 
 $(document).ready(function () {
-  $("#adicionar_receita").on("click", function () {
-    $("#modal_receita").modal("show");
-  });
-  $("#adicionar_gasto").on("click", function () {
-    $("#modal_gasto").modal("show");
-  });
 
-  $(".Confirma_Receita").click(function () {
-    const descricao = $("#descricao_receita").val().trim();
-    const valor = $("#valor_receita").val().trim();
-    var categoria = $("#categoria_receita").val().trim();
+  $("#adicionar_receita").on("click", function () {
+    const descricao = $("#descricao").val().trim();
+    const valor = $("#valor").val().trim();
+    var categoria = $("#categoria").val().trim();
     console.log(categoria)
     if (descricao && valor) {
       listaItens.push({
@@ -25,9 +19,9 @@ $(document).ready(function () {
       renderizarLista();
       atualizarBalanco();
 
-      $("#descricao_receita").val("");
-      $("#valor_receita").val("");
-      $("#modal_receita").modal("hide");
+      $("#descricao").val("");
+      $("#valor").val("");
+      $("#modal").modal("hide");
     } else {
       Swal.fire({
         title: "Preencha todos os campos",
@@ -35,12 +29,12 @@ $(document).ready(function () {
         confirmButtonColor: "red",
       });
     }
-  });
 
-  $(".Confirma_Gasto").click(function () {
-    const descricao = $("#descricao_gasto").val().trim();
-    const valor = $("#valor_gasto").val().trim();
-    var categoria = $("#categoria_gasto").val().trim();
+  });
+  $("#adicionar_gasto").on("click", function () {
+    const descricao = $("#descricao").val().trim();
+    const valor = $("#valor").val().trim();
+    var categoria = $("#categoria").val().trim();
 
     if (descricao && valor) {
       listaItens.push({
@@ -54,9 +48,9 @@ $(document).ready(function () {
       renderizarLista();
       atualizarBalanco();
 
-      $("#descricao_gasto").val("");
-      $("#valor_gasto").val("");
-      $("#modal_gasto").modal("hide");
+      $("#descricao").val("");
+      $("#valor").val("");
+      $("#modal").modal("hide");
     } else {
       Swal.fire({
         title: "Preencha todos os campos",
@@ -65,6 +59,7 @@ $(document).ready(function () {
       });
     }
   });
+
 
   $(".Cancela_Receita, .Cancela_Gasto").on("click", function () {
     $(".ui.modal").modal("hide");
@@ -85,6 +80,7 @@ $(document).ready(function () {
     renderizarLista('');
 
   });
+
 });
 
 
@@ -97,7 +93,7 @@ function renderizarLista(filtroTipo) {
     return item.tipo === filtroTipo;
   });
 
-  listaFiltrada.forEach((item) => {
+  listaFiltrada.forEach((item, index) => {
     const tipoClasse = item.tipo === "receita" ? "tipo-receita" : "tipo-gasto";
     const row = `
       <tr>
@@ -105,10 +101,28 @@ function renderizarLista(filtroTipo) {
         <td>${parseFloat(item.valor).toFixed(2)}</td>
         <td>${item.categoria}</td>
         <td class="${tipoClasse}">${item.tipo}</td>
+        <td>
+          <button class="ui red icon button btn-excluir" data-index="${index}">
+            <i class="trash icon"></i>
+          </button>
+        </td>
       </tr>
     `;
     tbody.append(row);
   });
+
+  // Adicionar evento de clique para remover item
+  $(".btn-excluir").on("click", function () {
+    const index = $(this).data("index");
+    removerTransacao(index);
+  });
+}
+
+
+function removerTransacao(index) {
+  listaItens.splice(index, 1); // Remove o item pelo índice
+  renderizarLista(); // Atualiza a tabela
+  atualizarBalanco(); // Atualiza o saldo
 }
 
 

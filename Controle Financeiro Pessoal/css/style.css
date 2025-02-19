@@ -154,8 +154,8 @@ main {
   color: #777;
 }
 .detalhe p {
-  font-size: 1.2em;
-  margin: 5px 0 0;
+  font-size: 20px;
+  margin: 0px 0 0;
 }
 .receita span {
   color: #4caf50;
@@ -175,8 +175,8 @@ main {
 
 /* =========== Tabs (opcional) =========== */
 .tabs {
-  text-align: center;
-  margin-bottom: 20px;
+  text-align: left;
+  margin-bottom: 15px;
 }
 
 /* =========== Lista de Transações =========== */
@@ -262,3 +262,19 @@ nav ul li a:hover {
   background-color: #34495E;
   border-radius: 5px;
 }
+
+
+.fields-container {
+  display: flex;
+  gap: 10px; /* Espaço entre os campos */
+  justify-content: center; /* Centraliza os campos */
+}
+
+.field {
+  flex: 100px; /* Faz os campos ocuparem o mesmo espaço */
+  min-width: 200px; /* Define um tamanho mínimo para evitar quebra */
+}
+
+
+
+
