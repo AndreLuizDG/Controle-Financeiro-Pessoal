@@ -7,9 +7,7 @@ O projeto é um aplicativo para controle financeiro pessoal, desenvolvido com o 
 
 - Desenvolvimento do BackEnd
 - Busca e Filtros Avançados
-- Categorias de Transação
 - Filtro por datas
-- Melhorias no Design
 - Paginação
 - Relatórios Exportáveis
 - Gráficos e Dashboards
