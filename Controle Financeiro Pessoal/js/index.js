@@ -60,7 +60,9 @@ $(document).ready(function () {
     }
   });
 
-
+  $("#valor").on("input", function(e){
+    e.target.value = e.target.value.replace(/[^0-9.]/g, '');
+  })
   $(".Cancela_Receita, .Cancela_Gasto").on("click", function () {
     $(".ui.modal").modal("hide");
   });
