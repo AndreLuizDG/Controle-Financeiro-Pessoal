@@ -1,15 +1,23 @@
+// ---------------------------------------------------------------------------- //
+// Variaveis Globais
+// ---------------------------------------------------------------------------- //
 let listaItens = [];
 let index;
+
+// ---------------------------------------------------------------------------- //
+// Carrega o doc do Jquery
+// ---------------------------------------------------------------------------- //
 
 $(document).ready(function () {
 
   $(".btn_editar_gastos").hide();
 
   $("#adicionar_receita").on("click", function () {
+
     const descricao = $("#descricao").val().trim();
-    const valor = $("#valor").val().trim();
-    var categoria = $("#categoria").val().trim();
-    var data = $("#data").val().trim();
+    const valor     = $("#valor").val().trim();
+    var   categoria = $("#categoria").val().trim();
+    var   data      = $("#data").val().trim();
 
     if (!data) {
       data = obterDataAtual();
@@ -38,8 +46,9 @@ $(document).ready(function () {
         confirmButtonColor: "red",
       });
     }
-
   });
+
+
   $("#adicionar_gasto").on("click", function () {
     const descricao = $("#descricao").val().trim();
     const valor = $("#valor").val().trim();
@@ -71,13 +80,19 @@ $(document).ready(function () {
     }
   });
 
-  $("#valor").on("input", function(e){
+// ---------------------------------------------------------------------------- //
+// Trata campo de valor da Tela, permitindo só numeros e apenas um .
+// ---------------------------------------------------------------------------- //
+  $("#valor").on("input", function(e) {
     e.target.value = e.target.value.replace(/[^0-9.]/g, '');
-  })
-  $(".Cancela_Receita, .Cancela_Gasto").on("click", function () {
-    $(".ui.modal").modal("hide");
+    if ((e.target.value.match(/\./g) || []).length > 1) {
+      e.target.value = e.target.value.replace(/\.(?=.*\.)/g, '');
+    }
   });
-
+  
+// ---------------------------------------------------------------------------- //
+// Filtro da Lista de transações
+// ---------------------------------------------------------------------------- //
   $("#btn-gastos").click(function () {
     $(this).addClass("red").siblings().removeClass("green grey");
     renderizarLista('gasto');
@@ -91,23 +106,14 @@ $(document).ready(function () {
   $("#btn-todos").click(function () {
     $(this).addClass("grey").siblings().removeClass("red green");
     renderizarLista('');
-
   });
+// ---------------------------------------------------------------------------- //
 
-  $("#Cancelar_edit").click(function () {
+}); //$(document).ready(function () {
 
-    $("#descricao").val("");
-    $("#valor").val("");
-    $("#categoria").val("");
-    $("#data").val("");
-
-    $(".btn_editar_gastos").hide();
-    $(".btn_salvar_gastos").show();
-
-  });
-
-});
-
+// ---------------------------------------------------------------------------- //
+// Renderiza a lista de transações após alguma ação
+// ---------------------------------------------------------------------------- //
 
 function renderizarLista(filtroTipo) {
   const tbody = $("#tabela-transacoes tbody");
@@ -123,7 +129,7 @@ function renderizarLista(filtroTipo) {
     const row = `
       <tr>
         <td>${item.descricao}</td>
-        <td>${parseFloat(item.valor).toFixed(2)}</td>
+        <td>R$${parseFloat(item.valor).toFixed(2)}</td>
         <td>${item.categoria}</td>
         <td class="${tipoClasse}">${item.tipo}</td>
         <td>${item.data}</td>
@@ -141,11 +147,26 @@ function renderizarLista(filtroTipo) {
     tbody.append(row);
   });
 
+  $("#Cancelar_edit").click(function () {
+
+    // Limpa Campos da tela
+    $("#descricao").val("");
+    $("#valor").val("");
+    $("#categoria").val("");
+    $("#data").val("");
+
+    // Atualiza botões da tela
+    $(".btn_editar_gastos").hide();
+    $(".btn_salvar_gastos").show();
+  });
+
+  // Trata o clique para excluir um registro do DOM
   $(".btn-excluir").on("click", function () {
     const index = $(this).data("index");
     removerTransacao(index);
   });
 
+ // Trata o clique para editar um registro do DOM
   $(".btn-edit").on("click", function () {
     $(".btn_salvar_gastos").hide();
     $(".btn_editar_gastos").show();
@@ -157,39 +178,18 @@ function renderizarLista(filtroTipo) {
     $("#categoria").val(listaItens[index].categoria);
     $("#data").val(listaItens[index].data);
   });
-  
+
+// Trata o clique para salvar a edição de um registro do DOM
   $("#edit_receita").on("click", function () {
     console.log(listaItens[index]);
-  
-    const descricao = $("#descricao").val().trim();
-    const valor = $("#valor").val().trim();
-    var categoria = $("#categoria").val().trim();
-    var data = $("#data").val().trim();
-
-    if (!data) {
-      data = obterDataAtual();
-    }    
-  
-    listaItens[index].descricao  = descricao;
-    listaItens[index].valor = parseFloat(valor);
-    listaItens[index].categoria = categoria;
-    listaItens[index].data = data;
-
-      renderizarLista();
-      atualizarBalanco();
-
-      $(".btn_salvar_gastos").show();
-      $(".btn_editar_gastos").hide();
-
-      $("#descricao").val("");
-      $("#valor").val("");
-      $("#categoria").val("");
-      $("#data").val("");
-
+    editarRegistro(index);
   });
   
 }
 
+// ---------------------------------------------------------------------------- //
+// Remove a transação da DOM
+// ---------------------------------------------------------------------------- //
 
 function removerTransacao(index) {
   listaItens.splice(index, 1);
@@ -197,6 +197,9 @@ function removerTransacao(index) {
   atualizarBalanco();
 }
 
+// ---------------------------------------------------------------------------- //
+// Atualiza o valor do Balanço na tela principal
+// ---------------------------------------------------------------------------- //
 
 function atualizarBalanco() {
   let totalReceitas = 0;
@@ -224,10 +227,47 @@ function atualizarBalanco() {
   }
 }
 
+// ---------------------------------------------------------------------------- //
+// Busca a Data Atual
+// ---------------------------------------------------------------------------- //
 function obterDataAtual() {
   const dataAtual = new Date();
   const dia = String(dataAtual.getDate()).padStart(2, "0");
   const mes = String(dataAtual.getMonth() + 1).padStart(2, "0");
   const ano = dataAtual.getFullYear();
   return `${dia}/${mes}/${ano}`;
+}
+
+
+// ---------------------------------------------------------------------------- //
+// Edita registro da lista
+// ---------------------------------------------------------------------------- //
+
+function editarRegistro(index){
+
+  var descricao = $("#descricao").val().trim();
+  const valor   = $("#valor").val().trim();
+  var categoria = $("#categoria").val().trim();
+  var data = $("#data").val().trim();
+
+  if (!data) {
+    data = obterDataAtual();
+  }    
+
+  listaItens[index].descricao  = descricao;
+  listaItens[index].valor = parseFloat(valor);
+  listaItens[index].categoria = categoria;
+  listaItens[index].data = data;
+
+    renderizarLista();
+    atualizarBalanco();
+
+    $(".btn_salvar_gastos").show();
+    $(".btn_editar_gastos").hide();
+
+    $("#descricao").val("");
+    $("#valor").val("");
+    $("#categoria").val("");
+    $("#data").val("");
+
 }
