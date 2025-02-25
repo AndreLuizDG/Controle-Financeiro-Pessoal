@@ -63,12 +63,23 @@
               <label>Categoria</label>
               <input id="categoria" type="text" placeholder="Ex: Saúde" />
             </div>
+            <div class="field">
+              <label>Data</label>
+              <input id="data" type="text" placeholder="Ex: DD/MM/AAAA" />
+            </div>
           </div>
         </form>
         
-
+      <div class="btn_salvar_gastos">
       <button id="adicionar_receita" class="ui green button">Adicionar Receita</button>
       <button id="adicionar_gasto" class="ui red button">Adicionar Gasto</button>
+     </div>
+
+     <div class="btn_editar_gastos">
+      <button id="edit_receita" class="ui green button">Editar Receita</button>
+      <button id="Cancelar_edit" class="ui red button">Cancelar</button>
+     </div>
+
     </div>
 
 
@@ -90,6 +101,7 @@
             <th>Valor (R$)</th>
             <th>Categoria</th>
             <th>Tipo</th>
+            <th>Data</th>
             <th>Ação</th> <!-- Nova coluna para o ícone de exclusão -->
           </tr>
         </thead>

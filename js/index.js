@@ -1,18 +1,26 @@
 let listaItens = [];
+let index;
 
 $(document).ready(function () {
+
+  $(".btn_editar_gastos").hide();
 
   $("#adicionar_receita").on("click", function () {
     const descricao = $("#descricao").val().trim();
     const valor = $("#valor").val().trim();
     var categoria = $("#categoria").val().trim();
-    console.log(categoria)
+    var data = $("#data").val().trim();
+
+    if (!data) {
+      data = obterDataAtual();
+    }    
+
     if (descricao && valor) {
       listaItens.push({
         descricao: descricao,
         valor: parseFloat(valor),
         categoria: categoria,
-        data: obterDataAtual(),
+        data: data,
         tipo: "receita",
       });
 
@@ -21,7 +29,8 @@ $(document).ready(function () {
 
       $("#descricao").val("");
       $("#valor").val("");
-      $("#modal").modal("hide");
+      $("#categoria").val("");
+      $("#data").val("");
     } else {
       Swal.fire({
         title: "Preencha todos os campos",
@@ -45,12 +54,14 @@ $(document).ready(function () {
         tipo: "gasto",
       });
 
+   
       renderizarLista();
       atualizarBalanco();
 
       $("#descricao").val("");
       $("#valor").val("");
-      $("#modal").modal("hide");
+      $("#categoria").val("");
+      $("#data").val("");
     } else {
       Swal.fire({
         title: "Preencha todos os campos",
@@ -83,6 +94,18 @@ $(document).ready(function () {
 
   });
 
+  $("#Cancelar_edit").click(function () {
+
+    $("#descricao").val("");
+    $("#valor").val("");
+    $("#categoria").val("");
+    $("#data").val("");
+
+    $(".btn_editar_gastos").hide();
+    $(".btn_salvar_gastos").show();
+
+  });
+
 });
 
 
@@ -103,9 +126,14 @@ function renderizarLista(filtroTipo) {
         <td>${parseFloat(item.valor).toFixed(2)}</td>
         <td>${item.categoria}</td>
         <td class="${tipoClasse}">${item.tipo}</td>
+        <td>${item.data}</td>
         <td>
           <button class="ui red icon button btn-excluir" data-index="${index}">
             <i class="trash icon"></i>
+          </button>
+          
+          <button class="ui blue icon button btn-edit" data-index="${index}">
+            <i class="pencil alternate icon"></i>
           </button>
         </td>
       </tr>
@@ -113,18 +141,60 @@ function renderizarLista(filtroTipo) {
     tbody.append(row);
   });
 
-  // Adicionar evento de clique para remover item
   $(".btn-excluir").on("click", function () {
     const index = $(this).data("index");
     removerTransacao(index);
   });
+
+  $(".btn-edit").on("click", function () {
+    $(".btn_salvar_gastos").hide();
+    $(".btn_editar_gastos").show();
+  
+    index = $(this).data("index"); // Atribui o índice à variável global
+  
+    $("#descricao").val(listaItens[index].descricao);
+    $("#valor").val(listaItens[index].valor);
+    $("#categoria").val(listaItens[index].categoria);
+    $("#data").val(listaItens[index].data);
+  });
+  
+  $("#edit_receita").on("click", function () {
+    console.log(listaItens[index]);
+  
+    const descricao = $("#descricao").val().trim();
+    const valor = $("#valor").val().trim();
+    var categoria = $("#categoria").val().trim();
+    var data = $("#data").val().trim();
+
+    if (!data) {
+      data = obterDataAtual();
+    }    
+  
+    listaItens[index].descricao  = descricao;
+    listaItens[index].valor = parseFloat(valor);
+    listaItens[index].categoria = categoria;
+    listaItens[index].data = data;
+
+      renderizarLista();
+      atualizarBalanco();
+
+      $(".btn_salvar_gastos").show();
+      $(".btn_editar_gastos").hide();
+
+      $("#descricao").val("");
+      $("#valor").val("");
+      $("#categoria").val("");
+      $("#data").val("");
+
+  });
+  
 }
 
 
 function removerTransacao(index) {
-  listaItens.splice(index, 1); // Remove o item pelo índice
-  renderizarLista(); // Atualiza a tabela
-  atualizarBalanco(); // Atualiza o saldo
+  listaItens.splice(index, 1);
+  renderizarLista();
+  atualizarBalanco();
 }
 
 
